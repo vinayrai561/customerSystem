@@ -10,7 +10,7 @@ Follow the steps below to set up and run the project locally.
 
 ### 1. Clone the Repository
 ```bash
-git pull https://github.com/vikashmishra464/branchInternational
+git pull https://github.com/vinayrai561/customerSystem
 ```
 
 ### 2. Install Dependencies
@@ -51,7 +51,7 @@ nodemon start
 ## 🧩 Project Structure
 
 ```
-branchInternational/
+CustomerQuerySystem/
 │
 ├── src/              # Source code (controllers, services, routes, etc.)
 ├── package.json
