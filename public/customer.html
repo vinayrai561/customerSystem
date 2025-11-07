@@ -1,0 +1,628 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Customer Support — Submit Message</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    /* Enhanced design system with modern colors and typography */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+    :root {
+      --color-background: #0f172a;
+      --color-surface: #1e293b;
+      --color-surface-hover: #334155;
+      --color-border: #334155;
+      --color-border-focus: #3b82f6;
+      --color-text-primary: #f1f5f9;
+      --color-text-secondary: #94a3b8;
+      --color-text-muted: #64748b;
+      --color-primary: #3b82f6;
+      --color-primary-hover: #2563eb;
+      --color-success: #10b981;
+      --color-success-bg: #064e3b;
+      --color-error: #ef4444;
+      --color-error-bg: #7f1d1d;
+      --color-accent: #8b5cf6;
+      --radius-sm: 6px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: var(--color-text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+      padding: 24px 16px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .subtitle {
+      color: var(--color-text-secondary);
+      font-size: 16px;
+      margin-bottom: 32px;
+    }
+
+    .card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-md);
+      transition: all 0.2s ease;
+    }
+
+    .card:hover {
+      box-shadow: var(--shadow-lg);
+      border-color: var(--color-border-focus);
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--color-text-primary);
+    }
+
+    .field {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      font-size: 14px;
+      color: var(--color-text-secondary);
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      padding: 12px 16px;
+      background: var(--color-background);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      color: var(--color-text-primary);
+      font-size: 15px;
+      font-family: inherit;
+      transition: all 0.2s ease;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    textarea:focus {
+      outline: none;
+      border-color: var(--color-border-focus);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: var(--color-text-muted);
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    button {
+      padding: 12px 24px;
+      background: var(--color-primary);
+      color: white;
+      border: none;
+      border-radius: var(--radius-md);
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+      box-shadow: var(--shadow-sm);
+    }
+
+    button:hover:not(:disabled) {
+      background: var(--color-primary-hover);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-md);
+    }
+
+    button:active:not(:disabled) {
+      transform: translateY(0);
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    button.secondary {
+      background: var(--color-surface-hover);
+      color: var(--color-text-primary);
+    }
+
+    button.secondary:hover:not(:disabled) {
+      background: var(--color-border);
+    }
+
+    .error {
+      background: var(--color-error-bg);
+      border: 1px solid var(--color-error);
+      color: var(--color-error);
+      padding: 12px 16px;
+      border-radius: var(--radius-md);
+      margin-bottom: 16px;
+      font-size: 14px;
+      display: none;
+    }
+
+    .success {
+      background: var(--color-success-bg);
+      border: 1px solid var(--color-success);
+      color: var(--color-success);
+      padding: 16px;
+      border-radius: var(--radius-md);
+      margin-bottom: 16px;
+      display: none;
+    }
+
+    .success strong {
+      display: block;
+      margin-bottom: 12px;
+      font-size: 15px;
+    }
+
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .info-row:last-child {
+      border-bottom: none;
+    }
+
+    .info-label {
+      color: var(--color-text-secondary);
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .info-value {
+      color: var(--color-text-primary);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .mono {
+      font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, monospace;
+      background: var(--color-background);
+      padding: 4px 8px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--color-border);
+      margin: 32px 0;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 32px;
+      color: var(--color-text-secondary);
+      font-size: 15px;
+    }
+
+    .empty {
+      text-align: center;
+      padding: 32px;
+      color: var(--color-text-muted);
+      font-size: 15px;
+      background: var(--color-background);
+      border-radius: var(--radius-md);
+      border: 1px dashed var(--color-border);
+    }
+
+    .reply-item {
+      background: var(--color-background);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      margin-bottom: 12px;
+      transition: all 0.2s ease;
+    }
+
+    .reply-item:hover {
+      border-color: var(--color-border-focus);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .reply-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .reply-agent {
+      font-weight: 600;
+      color: var(--color-primary);
+      font-size: 14px;
+    }
+
+    .reply-date {
+      color: var(--color-text-muted);
+      font-size: 13px;
+    }
+
+    .reply-text {
+      color: var(--color-text-primary);
+      font-size: 15px;
+      line-height: 1.6;
+      white-space: pre-wrap;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 16px 12px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+
+      .card {
+        padding: 20px;
+      }
+
+      button {
+        width: 100%;
+      }
+
+      .info-row {
+        flex-direction: column;
+        gap: 4px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Customer Support</h1>
+    <p class="subtitle">Submit your message and we'll get back to you as soon as possible.</p>
+
+    <!-- Submit Message Form -->
+    <div class="card">
+      <h2 style="margin-top: 0; font-size: 20px;">Submit a Message</h2>
+      <div id="submitError" class="error" style="display: none;"></div>
+      <div id="submitSuccess" class="success" style="display: none;"></div>
+
+      <form id="messageForm">
+        <div class="field">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" name="name" required placeholder="John Doe" />
+        </div>
+        <div class="field">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" required placeholder="john@example.com" />
+        </div>
+        <div class="field">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" required placeholder="Describe your issue or question..."></textarea>
+        </div>
+        <button type="submit" id="submitBtn">Send Message</button>
+      </form>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- View Replies by Message ID -->
+    <div class="card">
+      <h2 style="margin-top: 0; font-size: 20px;">Check Status by Message ID</h2>
+      <p style="color: #64748b; font-size: 14px; margin-top: 0;">Enter your message ID to view replies.</p>
+
+      <div id="repliesError" class="error" style="display: none;"></div>
+
+      <div class="field">
+        <label for="messageId">Message ID</label>
+        <input type="text" id="messageId" placeholder="Enter your message ID" />
+      </div>
+      <button id="viewRepliesBtn" class="secondary">View Replies</button>
+
+      <div id="repliesContent" style="margin-top: 24px;"></div>
+    </div>
+
+    <!-- NEW: Find by Email -->
+    <div class="card">
+      <h2 style="margin-top: 0; font-size: 20px;">Find My Messages by Email</h2>
+      <p class="subtitle" style="margin: 0 0 12px 0;">We can fetch your latest message (and replies) or list all.</p>
+
+      <div id="emailSearchError" class="error" style="display:none;"></div>
+
+      <div class="field">
+        <label for="searchEmail">Email Address</label>
+        <input type="email" id="searchEmail" placeholder="john@example.com" />
+      </div>
+
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+        <button id="findLatestBtn" class="secondary">Find Latest + Replies</button>
+        <button id="listAllBtn" class="secondary">List All Messages</button>
+      </div>
+
+      <div id="emailSearchContent" style="margin-top: 16px;"></div>
+    </div>
+  </div>
+
+  <script>
+    // === Base path of your Express router ===
+    // If mounted at app.use('/api/customer', router) then:
+    const API_BASE = '/api/customer';
+
+    // Elements
+    const messageForm = document.getElementById('messageForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const submitError = document.getElementById('submitError');
+    const submitSuccess = document.getElementById('submitSuccess');
+
+    const messageIdInput = document.getElementById('messageId');
+    const viewRepliesBtn = document.getElementById('viewRepliesBtn');
+    const repliesError = document.getElementById('repliesError');
+    const repliesContent = document.getElementById('repliesContent');
+
+    const searchEmailInput = document.getElementById('searchEmail');
+    const findLatestBtn = document.getElementById('findLatestBtn');
+    const listAllBtn = document.getElementById('listAllBtn');
+    const emailSearchError = document.getElementById('emailSearchError');
+    const emailSearchContent = document.getElementById('emailSearchContent');
+
+    function showError(element, message) {
+      element.textContent = message;
+      element.style.display = 'block';
+      setTimeout(() => { element.style.display = 'none'; }, 5000);
+    }
+    function formatDate(isoString) {
+      if (!isoString) return 'N/A';
+      const date = new Date(isoString);
+      return date.toLocaleString();
+    }
+
+    // Submit message -> POST /send_message
+    messageForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      submitError.style.display = 'none';
+      submitSuccess.style.display = 'none';
+
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+      if (!name || !email || !message) {
+        showError(submitError, 'Please fill in all fields.');
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+
+      try {
+        const res = await fetch(`${API_BASE}/send_message`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, message })
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || data.message || `HTTP ${res.status}`);
+
+        const m = data.data || {};
+        submitSuccess.innerHTML = `
+          <strong>Message sent successfully!</strong>
+          <div class="info-row"><span class="info-label">Message ID:</span><span class="info-value mono">${m.id || 'N/A'}</span></div>
+          <div class="info-row"><span class="info-label">Urgency Score:</span><span class="info-value">${Number.isFinite(m.urgency_score) ? m.urgency_score : 'N/A'}</span></div>
+          <div class="info-row"><span class="info-label">Status:</span><span class="info-value">${m.status || 'open'}</span></div>
+          <div class="info-row"><span class="info-label">Submitted:</span><span class="info-value">${formatDate(m.created_at)}</span></div>
+          <p style="margin:12px 0 0 0; font-size:14px;">Save your message ID to check for replies later.</p>
+        `;
+        submitSuccess.style.display = 'block';
+        messageIdInput.value = m.id || '';
+        messageForm.reset();
+      } catch (err) {
+        console.error(err);
+        showError(submitError, err.message || 'Failed to send message.');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send Message';
+      }
+    });
+
+    // View replies by ID -> GET /get_reply/:messageId
+    viewRepliesBtn.addEventListener('click', async () => {
+      const messageId = messageIdInput.value.trim();
+      if (!messageId) return showError(repliesError, 'Please enter a message ID.');
+
+      repliesError.style.display = 'none';
+      repliesContent.innerHTML = '<div class="loading">Loading replies...</div>';
+      viewRepliesBtn.disabled = true;
+
+      try {
+        const res = await fetch(`${API_BASE}/get_reply/${encodeURIComponent(messageId)}`);
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || data.message || `HTTP ${res.status}`);
+
+        const message = data.message || {};
+        const replies = data.replies || [];
+
+        let html = `
+          <div style="background:#f8fafc; padding:16px; border-radius:8px; margin-bottom:16px;">
+            <h3 style="margin:0 0 12px 0; font-size:16px;">Your Message</h3>
+            <div class="info-row"><span class="info-label">Status:</span><span class="info-value">${message.status || 'N/A'}</span></div>
+            <div class="info-row"><span class="info-label">Submitted:</span><span class="info-value">${formatDate(message.created_at)}</span></div>
+            <div style="margin-top:12px; padding-top:12px; border-top:1px solid #e2e8f0;">
+              <div style="color:#64748b; font-size:13px; margin-bottom:4px;">Message:</div>
+              <div style="white-space:pre-wrap;">${message.message || message.message_text || 'N/A'}</div>
+            </div>
+          </div>
+        `;
+
+        if (replies.length === 0) {
+          html += '<div class="empty">No replies yet. Our team will respond soon!</div>';
+        } else {
+          html += `<h3 style="margin:0 0 12px 0; font-size:16px;">Replies (${replies.length})</h3>`;
+          replies.forEach(r => {
+            html += `
+              <div class="reply-item">
+                <div class="reply-header">
+                  <span class="reply-agent">${r.agent_name || 'Support Agent'}</span>
+                  <span class="reply-date">${formatDate(r.created_at)}</span>
+                </div>
+                <div class="reply-text">${r.reply_message || ''}</div>
+              </div>
+            `;
+          });
+        }
+        repliesContent.innerHTML = html;
+      } catch (err) {
+        repliesContent.innerHTML = '';
+        showError(repliesError, err.message || 'Failed to load replies.');
+      } finally {
+        viewRepliesBtn.disabled = false;
+      }
+    });
+
+    // NEW: Find latest by email -> GET /get_messages_by_email?email=...&mode=latest
+    async function fetchLatestByEmail(email) {
+      const res = await fetch(`${API_BASE}/get_messages_by_email?email=${encodeURIComponent(email)}&mode=latest`);
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || data.message || `HTTP ${res.status}`);
+      return data;
+    }
+
+    // NEW: List all by email -> GET /get_messages_by_email?email=...&mode=all
+    async function fetchAllByEmail(email) {
+      const res = await fetch(`${API_BASE}/get_messages_by_email?email=${encodeURIComponent(email)}&mode=all`);
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || data.message || `HTTP ${res.status}`);
+      return data;
+    }
+
+    findLatestBtn.addEventListener('click', async () => {
+      const email = searchEmailInput.value.trim();
+      if (!email) return showError(emailSearchError, 'Please enter an email.');
+      emailSearchError.style.display = 'none';
+      emailSearchContent.innerHTML = '<div class="loading">Looking up your latest message...</div>';
+      findLatestBtn.disabled = true;
+
+      try {
+        const { latest, replies } = await fetchLatestByEmail(email);
+        if (!latest) {
+          emailSearchContent.innerHTML = '<div class="empty">No messages found for this email.</div>';
+          return;
+        }
+
+        let html = `
+          <div class="card" style="padding:16px;">
+            <div class="info-row"><span class="info-label">Message ID:</span><span class="info-value mono">${latest.id}</span></div>
+            <div class="info-row"><span class="info-label">Urgency Score:</span><span class="info-value">${Number.isFinite(latest.urgency_score) ? latest.urgency_score : 'N/A'}</span></div>
+            <div class="info-row"><span class="info-label">Status:</span><span class="info-value">${latest.status || 'open'}</span></div>
+            <div class="info-row"><span class="info-label">Submitted:</span><span class="info-value">${formatDate(latest.created_at)}</span></div>
+            <div style="margin-top:12px;"><span class="info-label" style="display:block; margin-bottom:4px;">Message:</span>${latest.message || ''}</div>
+          </div>
+        `;
+
+        if (!replies || replies.length === 0) {
+          html += '<div class="empty">No replies yet.</div>';
+        } else {
+          html += `<h3 style="margin:12px 0;">Replies (${replies.length})</h3>`;
+          replies.forEach(r => {
+            html += `
+              <div class="reply-item">
+                <div class="reply-header">
+                  <span class="reply-agent">${r.agent_name || 'Support Agent'}</span>
+                  <span class="reply-date">${formatDate(r.created_at)}</span>
+                </div>
+                <div class="reply-text">${r.reply_message || ''}</div>
+              </div>
+            `;
+          });
+        }
+
+        // also autofill the ID field for convenience
+        messageIdInput.value = latest.id;
+        emailSearchContent.innerHTML = html;
+      } catch (err) {
+        emailSearchContent.innerHTML = '';
+        showError(emailSearchError, err.message || 'Lookup failed.');
+      } finally {
+        findLatestBtn.disabled = false;
+      }
+    });
+
+    listAllBtn.addEventListener('click', async () => {
+      const email = searchEmailInput.value.trim();
+      if (!email) return showError(emailSearchError, 'Please enter an email.');
+      emailSearchError.style.display = 'none';
+      emailSearchContent.innerHTML = '<div class="loading">Fetching all messages…</div>';
+      listAllBtn.disabled = true;
+
+      try {
+        const { messages = [] } = await fetchAllByEmail(email);
+        if (messages.length === 0) {
+          emailSearchContent.innerHTML = '<div class="empty">No messages found for this email.</div>';
+          return;
+        }
+
+        let html = `<h3 style="margin:0 0 12px 0; font-size:16px;">Messages (${messages.length})</h3>`;
+        messages.forEach(m => {
+          html += `
+            <div class="card" style="padding:12px; margin-bottom:8px;">
+              <div class="info-row"><span class="info-label">ID:</span><span class="info-value mono">${m.id}</span></div>
+              <div class="info-row"><span class="info-label">Status:</span><span class="info-value">${m.status || 'open'}</span></div>
+              <div class="info-row"><span class="info-label">Urgency:</span><span class="info-value">${Number.isFinite(m.urgency_score) ? m.urgency_score : 'N/A'}</span></div>
+              <div class="info-row"><span class="info-label">Submitted:</span><span class="info-value">${formatDate(m.created_at)}</span></div>
+              <div style="margin-top:8px;"><span class="info-label" style="display:block; margin-bottom:4px;">Message:</span>${m.message || ''}</div>
+              <button style="margin-top:8px;" onclick="(function(id){ document.getElementById('messageId').value = id; document.getElementById('viewRepliesBtn').click(); })('${m.id}')">View Replies</button>
+            </div>
+          `;
+        });
+
+        emailSearchContent.innerHTML = html;
+      } catch (err) {
+        emailSearchContent.innerHTML = '';
+        showError(emailSearchError, err.message || 'Lookup failed.');
+      } finally {
+        listAllBtn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
